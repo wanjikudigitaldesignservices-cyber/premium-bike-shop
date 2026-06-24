@@ -1,6 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, Filter, SlidersHorizontal } from 'lucide-react';
+
+const PRODUCT_IMAGES = [
+  "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1582200238384-db7cd8635848?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1572196284554-4e321b0e7e0b?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&q=80&w=800"
+];
 
 export default function Shop() {
   return (
@@ -70,7 +80,7 @@ export default function Shop() {
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <Link href={`/shop/model-00${i}`} key={i} className="group flex flex-col group border border-border/50 rounded-2xl overflow-hidden hover:border-border bg-card transition-all">
               <div className="aspect-[4/3] bg-accent/30 relative flex items-center justify-center overflow-hidden">
-                <div className="text-muted-foreground/50 font-mono text-xs z-10">IMAGE PLACEHOLDER</div>
+                <Image src={PRODUCT_IMAGES[(i - 1) % PRODUCT_IMAGES.length]} alt={`Bike Model ${i}`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <div className="p-5 flex-1 flex flex-col justify-between">

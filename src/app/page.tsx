@@ -2,6 +2,7 @@ import React from 'react';
 import BikeModelViewer from '@/components/3d/BikeModel';
 import { DEFAULT_BASE_PRICE } from '@/lib/constants';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -39,6 +40,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Full Width Cinematic Video Section */}
+      <section className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden bg-black flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <video 
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          poster="https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&q=80&w=2000"
+        >
+          {/* High quality free stock video of a bicycle */}
+          <source src="https://videos.pexels.com/video-files/3195350/3195350-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        </video>
+        <div className="relative z-20 text-center px-4 max-w-3xl">
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4">
+            Forged for the Elements.
+          </h2>
+          <p className="text-lg md:text-xl text-white/80 font-light">
+            Every detail refined. Every component tested. Ride without limits.
+          </p>
+        </div>
+      </section>
+
       {/* Featured Categories - Bento Grid */}
       <section className="py-24 container mx-auto px-4">
         <div className="mb-12 flex justify-between items-end">
@@ -49,43 +74,42 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
           {/* Road - Large Span */}
           <Link href="/shop?category=road" className="md:col-span-2 relative rounded-3xl overflow-hidden group bg-card border border-border/50 hover:border-border transition-colors">
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
             <div className="absolute bottom-0 left-0 p-8 z-20 transition-transform duration-500 group-hover:-translate-y-2">
-              <h3 className="text-2xl font-bold mb-2">Road</h3>
-              <p className="text-muted-foreground max-w-sm">Aerodynamic excellence for maximum velocity on the tarmac.</p>
+              <h3 className="text-2xl font-bold mb-2 text-white">Road</h3>
+              <p className="text-white/80 max-w-sm">Aerodynamic excellence for maximum velocity on the tarmac.</p>
             </div>
-            {/* Placeholder for actual image */}
-            <div className="absolute inset-0 bg-accent/50 transition-transform duration-700 group-hover:scale-105" />
+            <Image src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=1200" alt="Road Bike" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </Link>
 
           {/* Gravel */}
           <Link href="/shop?category=gravel" className="relative rounded-3xl overflow-hidden group bg-card border border-border/50 hover:border-border transition-colors">
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
             <div className="absolute bottom-0 left-0 p-8 z-20 transition-transform duration-500 group-hover:-translate-y-2">
-              <h3 className="text-2xl font-bold mb-2">Gravel</h3>
-              <p className="text-muted-foreground text-sm">Conquer any terrain with confidence.</p>
+              <h3 className="text-2xl font-bold mb-2 text-white">Gravel</h3>
+              <p className="text-white/80 text-sm">Conquer any terrain with confidence.</p>
             </div>
-            <div className="absolute inset-0 bg-accent/50 transition-transform duration-700 group-hover:scale-105" />
+            <Image src="https://images.unsplash.com/photo-1582200238384-db7cd8635848?auto=format&fit=crop&q=80&w=800" alt="Gravel Bike" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </Link>
 
           {/* Urban */}
           <Link href="/shop?category=urban" className="relative rounded-3xl overflow-hidden group bg-card border border-border/50 hover:border-border transition-colors">
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
             <div className="absolute bottom-0 left-0 p-8 z-20 transition-transform duration-500 group-hover:-translate-y-2">
-              <h3 className="text-2xl font-bold mb-2">Urban</h3>
-              <p className="text-muted-foreground text-sm">Sleek commuting for the modern city.</p>
+              <h3 className="text-2xl font-bold mb-2 text-white">Urban</h3>
+              <p className="text-white/80 text-sm">Sleek commuting for the modern city.</p>
             </div>
-            <div className="absolute inset-0 bg-accent/50 transition-transform duration-700 group-hover:scale-105" />
+            <Image src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&q=80&w=800" alt="Urban Bike" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </Link>
 
           {/* Accessories */}
           <Link href="/shop?category=accessories" className="md:col-span-2 relative rounded-3xl overflow-hidden group bg-card border border-border/50 hover:border-border transition-colors">
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
             <div className="absolute bottom-0 left-0 p-8 z-20 transition-transform duration-500 group-hover:-translate-y-2">
-              <h3 className="text-2xl font-bold mb-2">Accessories</h3>
-              <p className="text-muted-foreground max-w-sm">Premium gear to complete your ride.</p>
+              <h3 className="text-2xl font-bold mb-2 text-white">Accessories</h3>
+              <p className="text-white/80 max-w-sm">Premium gear to complete your ride.</p>
             </div>
-            <div className="absolute inset-0 bg-accent/50 transition-transform duration-700 group-hover:scale-105" />
+            <Image src="https://images.unsplash.com/photo-1572196284554-4e321b0e7e0b?auto=format&fit=crop&q=80&w=1200" alt="Accessories" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </Link>
         </div>
       </section>
@@ -94,7 +118,7 @@ export default function Home() {
       <section className="py-24 bg-card border-y border-border/50">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="aspect-square rounded-full bg-accent/30 border border-border/50 relative overflow-hidden flex items-center justify-center">
-              <div className="text-muted-foreground text-sm tracking-widest uppercase">Visual Asset</div>
+              <Image src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?auto=format&fit=crop&q=80&w=800" alt="Carbon Fiber Assembly" fill className="object-cover" />
           </div>
           <div className="space-y-6 max-w-lg">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter">Carbon Fiber Mastery.</h2>

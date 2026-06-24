@@ -19,7 +19,7 @@ export default function About() {
         {/* Story Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-32">
           <div className="aspect-[4/5] rounded-3xl bg-accent/30 border border-border/50 relative overflow-hidden flex items-center justify-center">
-            <div className="text-muted-foreground text-sm tracking-widest uppercase">Workshop Image</div>
+            <Image src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&q=80&w=800" alt="Workshop" fill className="object-cover" />
           </div>
           <div className="space-y-6">
             <h2 className="text-3xl font-bold tracking-tighter">Born from precision.</h2>
@@ -64,6 +64,7 @@ export default function About() {
             ].map((member, i) => (
               <div key={i} className="group text-center">
                 <div className="aspect-square rounded-full bg-accent/30 border border-border/50 mb-4 mx-auto w-32 relative overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                  <Image src={["https://images.unsplash.com/photo-1534528741775-53994a69daeb", "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6", "https://images.unsplash.com/photo-1517841905240-472988babdf9", "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"][i] + "?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"} alt={member.name} fill className="object-cover" />
                 </div>
                 <h3 className="font-bold">{member.name}</h3>
                 <p className="text-sm text-muted-foreground">{member.role}</p>

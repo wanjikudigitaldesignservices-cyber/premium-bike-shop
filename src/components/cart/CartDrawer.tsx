@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { ShoppingCart, Trash2 } from "lucide-react";
 import { DEFAULT_BASE_PRICE } from "@/lib/constants";
+import Image from "next/image";
 
 export function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,8 +59,8 @@ export function CartDrawer() {
           ) : (
             cartItems.map((item) => (
               <div key={item.id} className="flex gap-4">
-                <div className="w-20 h-20 bg-accent/30 rounded-xl border border-border/50 shrink-0">
-                  {/* Thumbnail placeholder */}
+                <div className="w-20 h-20 bg-accent/30 rounded-xl border border-border/50 shrink-0 relative overflow-hidden">
+                  <Image src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=200" alt={item.name} fill className="object-cover" />
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
