@@ -3,13 +3,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Search, Filter, SlidersHorizontal } from 'lucide-react';
 
-const PRODUCT_IMAGES = [
-  "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1511994298241-608e28f14fde?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1582200238384-db7cd8635848?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1572196284554-4e321b0e7e0b?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&q=80&w=800"
+const PRODUCTS = [
+  { id: 'model-001', name: 'VeloCraft Aero', type: 'Road', price: 12000, img: 'https://images.unsplash.com/photo-1558169931-290076a91771?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-002', name: 'VeloCraft Gran Fondo', type: 'Road', price: 9500, img: 'https://images.unsplash.com/photo-1471506540643-4cc0f3a61f5c?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-003', name: 'VeloCraft Pathfinder', type: 'Gravel', price: 8200, img: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-004', name: 'VeloCraft Commute X', type: 'Urban', price: 4500, img: 'https://images.unsplash.com/photo-1505315570081-3dcbb39fbb24?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-005', name: 'VeloCraft Trailblazer', type: 'Mountain', price: 10500, img: 'https://images.unsplash.com/photo-1475510651910-c0b72f1bc1d3?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-006', name: 'VeloCraft E-City', type: 'Urban', price: 5800, img: 'https://images.unsplash.com/photo-1526019565538-4e5088eb8817?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-007', name: 'VeloCraft Track Pro', type: 'Road', price: 14000, img: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-008', name: 'VeloCraft Alpine', type: 'Mountain', price: 9200, img: 'https://images.unsplash.com/photo-1496167117681-944f70281bba?auto=format&fit=crop&q=80&w=800' },
+  { id: 'model-009', name: 'VeloCraft Gravel GRX', type: 'Gravel', price: 7800, img: 'https://images.unsplash.com/photo-1541625602330-2277a4c4618c?auto=format&fit=crop&q=80&w=800' }
 ];
 
 export default function Shop() {
@@ -76,21 +79,21 @@ export default function Shop() {
 
         {/* Product Grid */}
         <main className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Mock Product Card */}
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <Link href={`/shop/model-00${i}`} key={i} className="group flex flex-col group border border-border/50 rounded-2xl overflow-hidden hover:border-border bg-card transition-all">
+          {/* Product Grid */}
+          {PRODUCTS.map((product) => (
+            <Link href={`/shop/${product.id}`} key={product.id} className="group flex flex-col group border border-border/50 rounded-2xl overflow-hidden hover:border-border bg-card transition-all">
               <div className="aspect-[4/3] bg-accent/30 relative flex items-center justify-center overflow-hidden">
-                <Image src={PRODUCT_IMAGES[(i - 1) % PRODUCT_IMAGES.length]} alt={`Bike Model ${i}`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Image src={product.img} alt={product.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="text-xs text-muted-foreground mb-1 font-medium tracking-wider uppercase">Road</div>
-                  <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">VeloCraft Aero {i}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">High-modulus carbon frame designed for aggressive aerodynamics and speed.</p>
+                  <div className="text-xs text-muted-foreground mb-1 font-medium tracking-wider uppercase">{product.type}</div>
+                  <h3 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">High-modulus frame designed for aggressive riding.</p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="font-semibold">${(1200 + i * 500).toFixed(2)}</span>
+                  <span className="font-semibold">${product.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                   <span className="text-xs bg-accent px-2 py-1 rounded-full text-foreground">In Stock</span>
                 </div>
               </div>

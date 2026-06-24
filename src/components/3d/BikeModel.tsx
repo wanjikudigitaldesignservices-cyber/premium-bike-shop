@@ -15,18 +15,43 @@ interface BikeModelProps {
 }
 
 function Bike({ modelUrl, color }: { modelUrl: string; color?: string }) {
-  // If no model URL is provided, we use a placeholder primitive
-  // In a real scenario, we'd use: const { scene } = useGLTF(modelUrl);
   const meshRef = useRef<THREE.Mesh>(null);
+  
+  // Refs for animation
+  const groupRef = useRef<THREE.Group>(null);
+  const w1Ref = useRef<THREE.Mesh>(null);
+  const w2Ref = useRef<THREE.Mesh>(null);
+  const f1Ref = useRef<THREE.Mesh>(null);
+  const f2Ref = useRef<THREE.Mesh>(null);
 
   useFrame((state, delta) => {
-    // Optional continuous idle rotation can be added here if needed
+    // Animate parts assembling over the first 3 seconds
+    const t = Math.min(state.clock.elapsedTime / 3, 1);
+    // Ease out expo
+    const ease = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    
+    if (w1Ref.current) {
+      w1Ref.current.position.lerpVectors(new THREE.Vector3(-5, 0.5, 5), new THREE.Vector3(0, 0.5, 0), ease);
+      w1Ref.current.rotation.x = THREE.MathUtils.lerp(Math.PI * 4, 0, ease);
+    }
+    if (w2Ref.current) {
+      w2Ref.current.position.lerpVectors(new THREE.Vector3(5, 0.5, -5), new THREE.Vector3(1, 0.5, 0), ease);
+      w2Ref.current.rotation.x = THREE.MathUtils.lerp(-Math.PI * 4, 0, ease);
+    }
+    if (f1Ref.current) {
+      f1Ref.current.position.lerpVectors(new THREE.Vector3(0.5, 5, 0), new THREE.Vector3(0.5, 1, 0), ease);
+    }
+    if (f2Ref.current) {
+      f2Ref.current.position.lerpVectors(new THREE.Vector3(0.5, -5, 0), new THREE.Vector3(0.5, 1, 0), ease);
+    }
+    
+    // Add a gentle hover effect after assembly
+    if (groupRef.current && t >= 1) {
+      groupRef.current.position.y = Math.sin((state.clock.elapsedTime - 3) * 2) * 0.05;
+    }
   });
 
   if (modelUrl) {
-    // This will error if the URL is invalid, so we wrap it conceptually
-    // const { scene } = useGLTF(modelUrl);
-    // return <primitive object={scene} />;
     return (
       <mesh ref={meshRef}>
         <boxGeometry args={[1, 1, 2]} />
@@ -35,22 +60,22 @@ function Bike({ modelUrl, color }: { modelUrl: string; color?: string }) {
     );
   }
 
-  // Placeholder aesthetic geometry
+  // Placeholder aesthetic geometry forming a bike
   return (
-    <group>
-      <mesh position={[0, 0.5, 0]}>
+    <group ref={groupRef}>
+      <mesh ref={w1Ref} position={[-5, 0.5, 5]}>
         <torusGeometry args={[0.5, 0.05, 16, 100]} />
         <meshStandardMaterial color={color || "#111111"} metalness={0.8} roughness={0.2} />
       </mesh>
-      <mesh position={[1, 0.5, 0]}>
+      <mesh ref={w2Ref} position={[5, 0.5, -5]}>
         <torusGeometry args={[0.5, 0.05, 16, 100]} />
         <meshStandardMaterial color={color || "#111111"} metalness={0.8} roughness={0.2} />
       </mesh>
-      <mesh position={[0.5, 1, 0]}>
+      <mesh ref={f1Ref} position={[0.5, 5, 0]}>
         <cylinderGeometry args={[0.05, 0.05, 1.2, 32]} />
         <meshStandardMaterial color={"#555555"} metalness={0.5} roughness={0.5} />
       </mesh>
-      <mesh position={[0.5, 1, 0]} rotation={[0, 0, Math.PI / 2]}>
+      <mesh ref={f2Ref} position={[0.5, -5, 0]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.05, 0.05, 1.5, 32]} />
         <meshStandardMaterial color={"#555555"} metalness={0.5} roughness={0.5} />
       </mesh>
