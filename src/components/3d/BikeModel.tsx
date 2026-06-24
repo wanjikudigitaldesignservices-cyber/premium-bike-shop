@@ -6,7 +6,6 @@ import { OrbitControls, Stage, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Testing variable
-export const DEFAULT_BASE_PRICE = 1200.0000;
 const INITIAL_CAMERA_POSITION: [number, number, number] = [2.5000, 1.2500, 4.0000];
 
 interface BikeModelProps {

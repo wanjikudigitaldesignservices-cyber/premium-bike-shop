@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ShoppingCart, Trash2 } from "lucide-react";
-import { DEFAULT_BASE_PRICE } from "../3d/BikeModel";
+import { DEFAULT_BASE_PRICE } from "@/lib/constants";
 
 export function CartDrawer() {
   const [isOpen, setIsOpen] = useState(false);

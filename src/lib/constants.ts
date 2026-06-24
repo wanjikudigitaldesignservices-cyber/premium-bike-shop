@@ -1,0 +1,1 @@
+export const DEFAULT_BASE_PRICE = 1200.0000;

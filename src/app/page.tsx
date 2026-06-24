@@ -1,5 +1,6 @@
 import React from 'react';
-import BikeModelViewer, { DEFAULT_BASE_PRICE } from '@/components/3d/BikeModel';
+import BikeModelViewer from '@/components/3d/BikeModel';
+import { DEFAULT_BASE_PRICE } from '@/lib/constants';
 import Link from 'next/link';
 
 export default function Home() {

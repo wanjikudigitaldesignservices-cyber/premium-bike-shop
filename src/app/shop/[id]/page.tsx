@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from 'react';
-import BikeModelViewer, { DEFAULT_BASE_PRICE } from '@/components/3d/BikeModel';
+import BikeModelViewer from '@/components/3d/BikeModel';
+import { DEFAULT_BASE_PRICE } from '@/lib/constants';
 import { ArrowLeft, Check, ShieldCheck, Truck } from 'lucide-react';
 import Link from 'next/link';
 
